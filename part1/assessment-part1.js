@@ -43,27 +43,27 @@ function daBears(){
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "papaBear", "mamaBear", "goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
 
 // *************
@@ -82,8 +82,20 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // "charger" once, and invoke it twice on "mustang".
 
 // CODE HERE...
+function Vehicle() {
+  this.gasRemaining = 100;
+};
 
+Vehicle.prototype.drive = function() {
+  this.gasRemaining -= 25;
+};
 
+var charger = new Vehicle();
+charger.drive();
+
+var mustang = new Vehicle();
+mustang.drive();
+mustang.drive();
 
 
 
@@ -108,7 +120,23 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 
 // CODE HERE...
-
+String.prototype.grammarPolice = function() {
+  var newArray = this.split('');
+  newArray[0] = newArray[0].toUpperCase();
+  for (i = 1; i < newArray.length; i++) {
+    if (newArray[i-1].match(/[' ']/)) {
+      if (newArray[i].match(/[a-z]/)) {
+        newArray[i] = newArray[i].toUpperCase();
+      }
+    }
+    else {
+      if (newArray[i].match(/[A-Z]/)) {
+        newArray[i] = newArray[i].toLowerCase();
+      }
+    }
+  }
+  return newArray.join('');
+}
 
 
 // *************
@@ -126,7 +154,17 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // In all other cases, return "Different values"
 
 // CODE HERE...
-
+function valueType(a, b) {
+  if (a === b) {
+    return 'Exactly the same'
+  }
+  else if (a == b) {
+    return 'Same value, different types'
+  }
+  else {
+    return 'Different values'
+  }
+}
 
 
 // *************
@@ -141,3 +179,8 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 var theAnswer = "Unknown";
 
 // CODE HERE...
+var promiseCatcher = function(param) {
+  param.then(function(res) {
+    theAnswer = res;
+  });
+}

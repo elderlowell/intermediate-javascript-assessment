@@ -44,7 +44,14 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
-
+  .then(function(res) {
+    res.data[0] = firstUser;
+    return res;
+  })
+  .then(function(res) {
+    res.data[2] = thirdUser;
+    return res.data[9];
+  })
 }
 
 
@@ -74,7 +81,7 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
-
+var boundToElephant = large.bind(elephant);
 
 
 // *************
@@ -88,7 +95,9 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
-
+function deathStar(capacity, crew) {
+  return capacity.bind(crew);
+}
 
 
 // *************
@@ -103,7 +112,11 @@ function large() {
 // The closure function will return the combined value of assets and liabilities.
 
 // CODE HERE...
-
+function accountingOffice(assets) {
+  return function(liabilities) {
+    return assets + liabilities;
+  }
+}
 
 
 // *************
@@ -128,7 +141,14 @@ function large() {
 // };
 
 // CODE HERE...
-
+function forgetter(name) {
+  return function rememberall(item) {
+    return {
+      name: name,
+      remember: [item]
+    }
+  }
+}
 
 
 // *************
@@ -156,3 +176,42 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+function frodo(startingHungerValue, startingDangerValue) {
+  var startingHunger = startingHungerValue;
+  var startingDanger = startingDangerValue;
+
+  return {
+    dinnerOverFire: function() {
+      return {
+        hunger: function() {
+            if (startingHunger - 25 < 0) {
+              return 0;
+            }
+            else {return startingHunger - 25}
+          },
+        danger: function() {
+            if (startingDanger + 40 > 100) {
+              return 100;
+            }
+            else {return startingDanger + 40}
+          }
+      };
+    },
+    hidingInBush: function() {
+      return {
+        hunger: function() {
+            if (startingHunger + 35 > 100) {
+              return 100;
+            }
+            else {return startingHunger + 35}
+          },
+        danger: function() {
+            if (startingDanger - 20 < 0) {
+              return 0;
+            }
+            else {return startingDanger - 20}
+          }
+      };
+    }
+  }
+}
